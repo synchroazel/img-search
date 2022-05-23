@@ -43,6 +43,7 @@ Thumbs.db
 # Custom ignored files #
 ########################
 .ipynb_checkpoints/
+challenge_test_data
 saved_models
 dataset.zip
 dataset
