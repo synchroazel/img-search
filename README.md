@@ -18,3 +18,11 @@ a list of ranked matches between the query image and the gallery images.
 A secondary objective of the project is to learn how to collect data. As we are seeing during the course, collecting a
 large amount of data is crucial for ML applications. Therefore, you are required to largely expand the provided training
 data in order to improve your algorithm performance on the test set.
+
+## Links
+
+Download the (augmented) dataset here:<br>
+https://drive.google.com/file/d/1fsltFvsFRNXP0TE_eG-_JXoGYy5PApQH/view?usp=sharing
+
+Download the competition dataset here:<br>
+https://drive.google.com/file/d/1mz1OgcrzbNsFC3stQWwadbUypAmeUopf/view?usp=sharing
