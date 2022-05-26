@@ -14604,16 +14604,15 @@ This is known in literature as a content-based image retrieval system (CBIR) or,
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># general use imports</span>
 <span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">random</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">numpy.linalg</span> <span class="kn">import</span> <span class="n">norm</span>
-<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
 
 <span class="c1"># tensorflow</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span><span class="p">,</span> <span class="n">Sequential</span>
@@ -14816,17 +14815,17 @@ That being said, one could go beyond the 130 initial images and directly downloa
 <p>It is no easy task though: the dataset is quite large (~150GB) and downloading it all just for some more images from 10 classes would have been a waste of effort. Fortunately, ImageNet offers APIs to interact with the database, and a nice python script found on github (<a href="https://github.com/skaldek/ImageNet-Datasets-Downloader">https://github.com/skaldek/ImageNet-Datasets-Downloader</a>) made it even easier: just with the id of the class and the wanted number of images, we easily downloaded in bulk more images for our classes!</p>
 <p>However, not every class from ImageNet contains the same number of images. We wanted to go up to 500 images per class at first, but to make things more balanced we went for 250 per class in the end (class <code>n01644900</code> had no more than 250 images).</p>
 <p><strong>Image agugmentation</strong></p>
-<p>Another useful step was data augmentation. generally used both to expand a dataset when too small and to reduce overfitting when training a NN. We realized it through an <code>ImageDataGenerator()</code> and a simple functions which returns <em>n</em> augmented copies of a given image.</p>
+<p>Another useful step was data augmentation, generally used both to expand a dataset when too small and to reduce overfitting when training a NN. We realized it through an <code>ImageDataGenerator()</code> and a simple functions which returns <em>n</em> augmented copies of a given image.</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Augment training data</span>
@@ -14874,7 +14873,7 @@ That being said, one could go beyond the 130 initial images and directly downloa
 
     <span class="c1"># for each img of each class we&#39;re adding 5 more randomly augmented copies</span>
 
-    <span class="k">if</span> <span class="n">done</span><span class="p">:</span> <span class="k">break</span>
+    <span class="k">if</span> <span class="n">done</span><span class="p">:</span> <span class="k">break</span>  <span class="c1"># already done, don&#39;t do it again</span>
 
     <span class="k">for</span> <span class="n">img_path</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Augmenting images&#39;</span><span class="p">):</span>
         <span class="n">augment_img</span><span class="p">(</span><span class="n">img_path</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
@@ -14883,40 +14882,6 @@ That being said, one could go beyond the 130 initial images and directly downloa
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-Input <span class="ansi-green-fg">In [2]</span>, in <span class="ansi-cyan-fg">&lt;cell line: 42&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         cur_len <span style="color: rgb(98,98,98)">=</span> <span style="color: rgb(0,135,0)">len</span>(os<span style="color: rgb(98,98,98)">.</span>listdir(cur_dir))
-<span class="ansi-green-intense-fg ansi-bold">     40</span> done <span style="color: rgb(98,98,98)">=</span> <span class="ansi-bold" style="color: rgb(0,135,0)">True</span>
-<span class="ansi-green-fg">---&gt; 42</span> <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> paths <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> [<span class="ansi-yellow-bg">training_paths</span>, gallery_paths, query_paths]:
-<span class="ansi-green-intense-fg ansi-bold">     43</span> 
-<span class="ansi-green-intense-fg ansi-bold">     44</span>     <span style="color: rgb(95,135,135)"># for each img of each class we&#39;re adding 5 more randomly augmented copies</span>
-<span class="ansi-green-intense-fg ansi-bold">     46</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">if</span> done: <span class="ansi-bold" style="color: rgb(0,135,0)">break</span>
-<span class="ansi-green-intense-fg ansi-bold">     48</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> img_path <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> tqdm(paths, desc<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">Augmenting images</span><span style="color: rgb(175,0,0)">&#39;</span>):
-
-<span class="ansi-red-fg">NameError</span>: name &#39;training_paths&#39; is not defined</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div>
@@ -15533,12 +15498,12 @@ _________________________________________________________________
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Save time and load it!</span>
@@ -15549,54 +15514,6 @@ _________________________________________________________________
      </div>
 </div>
 </div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Metal device set to: Apple M1 Pro
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>2022-05-24 10:19:44.544218: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:305] Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
-2022-05-24 10:19:44.544343: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:271] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 0 MB memory) -&gt; physical PluggableDevice (device: 0, name: METAL, pci bus id: &lt;undefined&gt;)
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>WARNING:tensorflow:No training configuration found in save file, so the model was *not* compiled. Compile it manually.
-</pre>
-</div>
-</div>
-
-</div>
-
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -16665,7 +16582,7 @@ top-10 accuracy: 0.6367
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Pretty bad in comparison with the previous model based on ResNet. Probably due to:</p>
+<p>Pretty bad in comparison to the previous model based on ResNet. Probably due to:</p>
 <ul>
 <li>the small size of our dataset (ResNet is trained on ImageNet, on more than 14 mil images, versus our 15000)</li>
 <li>the quite simple architecture</li>
@@ -16682,7 +16599,7 @@ top-10 accuracy: 0.6367
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="5.-The-Challenge">5. The Challenge<a class="anchor-link" href="#5.-The-Challenge">&#182;</a></h2><p>The following section regards code that handles the actual challenge dataset.</p>
+<h2 id="5.-The-challenge">5. The challenge<a class="anchor-link" href="#5.-The-challenge">&#182;</a></h2><p>The following section regards code that handles the actual challenge dataset.</p>
 
 </div>
 </div>
@@ -16704,7 +16621,7 @@ top-10 accuracy: 0.6367
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">UnlabeledDataset</span><span class="p">:</span>
@@ -16781,7 +16698,7 @@ Loaded 6355 from challenge_test_data/gallery images
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[118]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[65]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gallery_feats</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
@@ -16815,8 +16732,9 @@ Loaded 6355 from challenge_test_data/gallery images
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Extracting gallery set features	 : 100%|██████████| 6355/6355 [06:04&lt;00:00, 17.44it/s]
-Extracting query set features	 : 100%|██████████| 65/65 [00:04&lt;00:00, 15.68it/s]
+<pre>Extracting gallery set features	 :   0%|          | 0/6355 [00:00&lt;?, ?it/s]2022-05-24 15:46:51.736339: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:113] Plugin optimizer for device_type GPU is enabled.
+Extracting gallery set features	 : 100%|██████████| 6355/6355 [06:09&lt;00:00, 17.22it/s]
+Extracting query set features	 : 100%|██████████| 65/65 [00:04&lt;00:00, 16.21it/s]
 </pre>
 </div>
 </div>
@@ -16920,7 +16838,7 @@ jp-needs-light-background
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[119]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[66]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluation</span><span class="p">(</span><span class="n">as_json</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">labeled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;challenge_01.json&#39;</span><span class="p">)</span>
@@ -16945,7 +16863,7 @@ jp-needs-light-background
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>Testing on all queries: 100%|██████████| 65/65 [03:21&lt;00:00,  3.11s/it]
+<pre>Testing on all queries: 100%|██████████| 65/65 [03:33&lt;00:00,  3.28s/it]
 </pre>
 </div>
 </div>
@@ -17210,9 +17128,22 @@ jp-needs-light-background
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>The results achieved, as given from <code>the submit()</code> function above, were the following:</p>
+<p>The (quite surprising) results achieved, as given from the <code>submit()</code> function above, were the following:</p>
 <p>Model 1 (ResNet152 backbone) : [0.2923, 0.6308, 0.7231]</p>
 <p>Model 2 (built-from-scratch) : [0.6769, 0.7692, 0.8154]</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We didn't really expect our model to outperform the ResNet. Why so?</p>
+<p>We should consider that the competition dataset was also made up of sketches, harder to classify than traditional images due to the lack of complex visual information: our built-from-scratch being less deep and complex than ResNet152 probably helped in the extraction of simpler features.</p>
 
 </div>
 </div>
