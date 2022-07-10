@@ -5,6 +5,8 @@ An image search engine trained on 10 random animal classes from ImageNet, develo
 
 The following project had been proposed as a competition, for a Machine Learning introductory course at University of Trento (MSc in Data Science). 
 
+**NB:** datasets are not included in this repo, but can be downloaded at the [links](##Links) section of this file. Trained models savedata and extracted features are also not included, for size matters.
+
 ## Objective
 
 The main objective of the project is to create an image search engine where a query image is fed to a model that will
