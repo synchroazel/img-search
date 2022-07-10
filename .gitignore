@@ -43,7 +43,13 @@ Thumbs.db
 # Custom ignored files #
 ########################
 .ipynb_checkpoints/
-challenge_test_data
-saved_models
-dataset.zip
+venv/
+models/myconv
+models/resnet
+dataset_feats
+challenge_feats
 dataset
+challenge
+
+
+
